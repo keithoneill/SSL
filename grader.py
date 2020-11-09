@@ -1,3 +1,4 @@
+#Create Grader Class
 class Grader:
     def __init__(self): 
         self.grade = float(raw_input("Please enter the grade: "))
@@ -40,12 +41,12 @@ class Grader:
         else:
             return statement
 
-
+#Gather information from the user
 studentName = raw_input("Please enter the student name: ")
 assignmentName = raw_input("Please enter the assignment name: ")
-
+#Create new instance of the grader class
 assignmentGrade = Grader()
-
+#Display information back to the user
 print(studentName + "@fullsail.edu")
 print("Here is your grade for " + assignmentName + ": " + assignmentGrade.getLetterGrade())
 print "Grade Details:"

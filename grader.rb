@@ -1,4 +1,6 @@
+#Global variable for letter grade
 $letterGrade
+#Class for grader
 class Grader
     def initialize
         puts "Please enter the grade: "
@@ -45,14 +47,14 @@ class Grader
         end
     end
 end
-
+#Gather information from the user
 puts "Please enter the student name: "
 studentName = gets.chomp
 puts "Please enter the assignment name: "
 assignmentName = gets.chomp
-
+#New instance of the grader class
 assignmentGrade = Grader.new
-
+#display information back to the user
 puts "#{studentName}@fullsail.edu"
 puts "Here is your grade for " + assignmentName + ": " + assignmentGrade.getLetterGrade()
 puts "Grade Details:"

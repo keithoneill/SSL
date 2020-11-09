@@ -1,10 +1,11 @@
+//Requiring readline
 const readline = require("readline");
-
+//Create readline variable to interact with user
 const rl = readline.createInterface({
 	input:process.stdin,
 	output:process.stdout
 });
-
+//Create grader class
 class Grader{
     letterGrade = function(grade){
         if (grade > 90){
@@ -56,13 +57,15 @@ class Grader{
     }
 }
 module.exports = Grader;
+//Create new instance of grader
 assignmentGrade = new Grader();
+//Gather user information and pass to the class methods
 rl.question("Please enter the student name: ", (name)=>{
     rl.question("Please enter the assignment name: ", (assignmentName)=>{
         rl.question("Please enter the grade: ", (grade)=>{
             var letterGrade = assignmentGrade.letterGrade(grade);
             var statement = assignmentGrade.statement(letterGrade);
-
+            //Display information back to the user
             console.log(`${name}@fullsail.edu`);
             console.log(`Here is your grade for ${assignmentName}: ${letterGrade}`)
             console.log("Grade Details:");
