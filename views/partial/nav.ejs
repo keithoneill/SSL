@@ -43,21 +43,21 @@
 </nav>
 <%if(typeof(sess)=="undefined" || sess.loggedin != true) {%>
     <div id="loginForm" style="z-index: 12;
-    display: block;
-    text-align: right;
-    background-color: #333a40;
-    margin-right: 0px;
-    padding-right: 20px;
-    color: gray;
-    position: absolute;
-    width: 155px;
-    margin-top: 120px;
-    padding-top: 5px;
-    right: 0;
-    border-radius: 10px;
-    padding: 11px;
-    font-size: 12px;
-    text-align: center;">
+        display: block;
+        text-align: right;
+        background-color: #333a40;
+        margin-right: 0px;
+        padding-right: 20px;
+        color: gray;
+        position: absolute;
+        width: 155px;
+        margin-top: 120px;
+        padding-top: 5px;
+        right: 0;
+        border-radius: 10px;
+        padding: 11px;
+        font-size: 12px;
+        text-align: center;">
         <h5>Login</h5>
         <form action="/login" method="POST">
             <input type="text" name="email" placeholder="email">
