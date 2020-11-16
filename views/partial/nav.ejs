@@ -29,11 +29,20 @@
                         <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/Register">Register</a>
                     <%}%>
                 </li>
+                <%if(typeof(sess)!="undefined" && sess.loggedin == true) {%>
+                    <% if(pagename=="Profile") {%>
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" style="color:yellow" href="/profile">Profile</a>
+                    <%}else{%>
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/profile">Profile</a>
+                    <%}%>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/logout">Logout</a>
+                <%}%>
             </ul>
         </div>
     </div>
 </nav>
-<div style="z-index: 12;
+<%if(typeof(sess)=="undefined" || sess.loggedin != true) {%>
+    <div id="loginForm" style="z-index: 12;
     display: block;
     text-align: right;
     background-color: #333a40;
@@ -55,5 +64,23 @@
             <input type="text" name="password" placeholder="password">
             <input type="submit">
         </form>
+    </div>
+<%}%>
 
-</div>
+<%if(typeof(errors)!="undefined"){%>
+    <% for(var x in errors) {%>
+        <div class="bg-primary text-white text-center d-flex align-items-center flex-column">
+            <div class="container d-flex align-items-center flex-column" style="padding-top: 100px; position: absolute; z-index: 99;">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 500px;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong><%= errors[x] %></strong> 
+                </div>
+                <script>
+                    $(".alert").alert();
+                </script>
+            </div>
+        </div>
+    <%}%>
+<%}%>

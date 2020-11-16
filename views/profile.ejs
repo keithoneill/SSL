@@ -21,8 +21,21 @@
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
+                <%if(typeof(errors)!="undefined"){%>
+                    <% for(var x in errors) {%>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 500px;">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong><%= errors[x] %></strong> 
+                        </div>
+                        <script>
+                            $(".alert").alert();
+                        </script>
+                    <%}%>
+                <%}%>
                 <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0">Keith's Demo</h1>
+                <h1 class="masthead-heading text-uppercase mb-0">Welcome to my Profile</h1>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -31,26 +44,23 @@
                 </div>
                 <!-- Masthead Subheading-->
                 <p class="masthead-subheading font-weight-light mb-0">Graphic Artist - Web Designer - Illustrator</p>
-                <div class="container d-flex align-items-center flex-column">
             </div>
         </header>
-        <!-- Contact Section-->
-        <section class="page-section" id="contact">
+        <!-- Portfolio Section-->
+        <section class="page-section portfolio" id="portfolio">
             <div class="container">
-                <!-- Contact Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Register</h2>
+                <!-- Portfolio Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
-                <!-- Contact Section Form-->
+                <!-- About Section Content-->
                 <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
-                        <%- include("partial/regform")%>
-                    </div>
+                    <div class="col-lg-4 ml-auto"><p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
+                    <div class="col-lg-4 mr-auto"><p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
                 </div>
             </div>
         </section>

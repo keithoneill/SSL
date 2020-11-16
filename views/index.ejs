@@ -21,19 +21,6 @@
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
-                <%if(typeof(errors)!="undefined"){%>
-                    <% for(var x in errors) {%>
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 500px;">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong><%= errors[x] %></strong> 
-                        </div>
-                        <script>
-                            $(".alert").alert();
-                        </script>
-                    <%}%>
-                <%}%>
                 <!-- Masthead Heading-->
                 <h1 class="masthead-heading text-uppercase mb-0">Keith's Demo</h1>
                 <!-- Icon Divider-->
