@@ -10,6 +10,8 @@ var request = require("request");
 var bodyParser = require("body-parser");
 
 
+
+
 var ejs = require("ejs");
 
 const router = express.Router();
@@ -19,38 +21,71 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 app.engine("ejs",require("ejs").__express);
 
+const session = require("express-session");
+app.use(session({secret:"secret",saveUninitialized:true,resave:true}));
+var sess;
+
 router.get("/",function(req,res){
-    res.render("index",{pagename:"Home"});
+    sess = req.session;
+    res.render("index",{pagename:"Home",sess:sess});
 })
 
 router.get("/about",function(req,res){
-    res.render("about",{pagename:"About"});
+    sess = req.session;
+    res.render("about",{pagename:"About",sess:sess});
 })
 
 router.get("/register",function(req,res){
-    res.render("register",{pagename:"Register"});
+    sess = req.session;
+    res.render("register",{pagename:"Register",sess:sess});
+})
+router.get("/register_success",function(req,res){
+    sess = req.session;
+    res.render("register_sucess",{pagename:"Register",sess:sess});
+})
+
+router.get("/profile",function(req,res){
+    sess = req.session;
+    if(typeof(sess) == "undefined" || sess.loggedin == false){
+        var errors = ["Not a authenticated user"];
+        res.render("index",{pagename:"Home",errors:errors})
+    }else{
+        res.render("profile",{pagename:"Profile",sess:sess})
+    }
+})
+
+router.get("/logout",function(req,res){
+    sess = req.session;
+    sess.destroy(function(err){
+        res.redirect("/");
+    })
 })
 
 router.post("/login",function(req,res){
-    // console.log(req.body.email);
-    // console.log(req.body.password);
     var errors = [];
     if(req.body.email == ""){
         errors.push("Email is required");
     }
-    if(req.body.password == ""){
-        errors.push("Password is required");
-    }
-    if(!/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(req.body.email)){
+    else if(req.body.email == "" && !/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(req.body.email)){
         errors.push("Email is not valid");
     }
-    if(!/^[a-zA-Z]\w(3,14)$/.test(req.body.password)){
+    else if(req.body.password == ""){
+        errors.push("Password is required");
+    }
+    else if(req.body.password == "" && !/^[a-zA-Z]\w(3,14)$/.test(req.body.password)){
         errors.push("Password is not valid");
     }
-    //console.log(errors);
-    res.render("index",{pagename:"Home",errors:errors});
+    if(req.body.email.toLowerCase() == "mike@aol.com" && req.body.password == "abc123"){
+        sess = req.session;
+        sess.loggedin = true;
+        res.render("profile",{pagename:"Profile",sess:sess});
+    }else{
+        errors.push("Login is invalid");
+        res.render("index",{pagename:"Home",errors:errors});
+    }
+    
 })
-// \d{1,5}.?\d{0,3}\s[a-zA-Z]{2,30}\s[a-zA-Z]{2,15}\s?[a-zA-Z]{2,15}
+
 router.post("/register",function(req,res){
     
     var errors = [];
